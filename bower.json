@@ -1,0 +1,36 @@
+{
+  "name": "is-svg",
+  "description": "Check if a String/Buffer is a SVG",
+  "license": "MIT",
+  "main": "browser.js",
+  "authors": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    }
+  ],
+  "keywords": [
+    "svg",
+    "vector",
+    "graphics",
+    "image",
+    "img",
+    "pic",
+    "picture",
+    "type",
+    "detect",
+    "check",
+    "is",
+    "string",
+    "str",
+    "buffer"
+  ],
+  "ignore": [
+    ".*",
+    "test.js",
+    "component.json",
+    "package.json",
+    "fixture*"
+  ]
+}
