@@ -1,9 +1,9 @@
 {
   "name": "is-svg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Check if a String/Buffer is SVG",
   "license": "MIT",
-  "repo": "sindresorhus/is-svg",
+  "repository": "sindresorhus/is-svg",
   "scripts": [
     "index.js"
   ],
