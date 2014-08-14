@@ -9,14 +9,6 @@
 $ npm install --save is-svg
 ```
 
-```sh
-$ bower install --save is-svg
-```
-
-```sh
-$ component install sindresorhus/is-svg
-```
-
 
 ## Usage
 
