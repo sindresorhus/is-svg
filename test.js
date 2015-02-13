@@ -9,6 +9,10 @@ it('should detect SVG from Buffer', function () {
 	assert(!isSvg(fs.readFileSync('fixture.jpg')));
 });
 
+it('should permit xml declarations', function() {
+  assert(isSvg('<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>'));
+});
+
 it('should not match svg tags in the middle of a document', function() {
   assert(!isSvg('this is not svg, but it mentions <svg> tags'));
 });
