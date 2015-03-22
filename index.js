@@ -15,5 +15,5 @@ function isBinary(buf) {
 }
 
 module.exports = function (buf) {
-	return !isBinary(buf) && /<svg[^>]*>.*<\/svg>\s*$/.test(buf);
+	return !isBinary(buf) && /<svg[^>]*>[^]*<\/svg>\s*$/.test(buf);
 };
