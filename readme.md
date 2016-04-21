@@ -5,7 +5,7 @@
 
 ## Install
 
-```sh
+```
 $ npm install --save is-svg
 ```
 
@@ -13,6 +13,8 @@ $ npm install --save is-svg
 ## Usage
 
 ```js
+const isSvg = require('is-svg');
+
 isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>');
 //=> true
 ```
@@ -29,4 +31,4 @@ If you want to make certain that your SVG is *valid*, try parsing it with [libxm
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
