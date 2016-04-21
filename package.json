@@ -34,6 +34,9 @@
     "str",
     "buffer"
   ],
+  "dependencies": {
+    "html-comment-regex": "^1.1.0"
+  },
   "devDependencies": {
     "ava": "*",
     "xo": "*"

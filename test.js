@@ -9,6 +9,7 @@ test('valid SVGs', t => {
 	t.true(m('<svg></svg>    '));
 	t.true(m('    <svg></svg>'));
 	t.true(m('<svg>\n</svg>'));
+	t.true(m('<!--unicorn--><svg>\n</svg><!--cake-->'));
 });
 
 test('invalid SVGs', t => {
