@@ -6,6 +6,7 @@ test('valid SVGs', t => {
 	t.true(m(fs.readFileSync('fixtures/fixture.svg')));
 	t.true(m('<svg width="100" height="100" viewBox="0 0 30 30" version="1.1"></svg>'));
 	t.true(m('<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>'));
+	t.true(m('<?xml version="1.0" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n<svg></svg>'));
 	t.true(m('<svg></svg>    '));
 	t.true(m('    <svg></svg>'));
 	t.true(m('<svg>\n</svg>'));
