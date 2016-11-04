@@ -1,7 +1,7 @@
 {
   "name": "is-svg",
   "version": "2.0.1",
-  "description": "Check if a String/Buffer is SVG",
+  "description": "Check if a string or buffer is SVG",
   "license": "MIT",
   "repository": "sindresorhus/is-svg",
   "author": {
@@ -39,6 +39,6 @@
   },
   "devDependencies": {
     "ava": "*",
-    "xo": "*"
+    "xo": "^0.16.0"
   }
 }
