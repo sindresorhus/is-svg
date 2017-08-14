@@ -1,6 +1,6 @@
 import fs from 'fs';
 import test from 'ava';
-import m from './';
+import m from '.';
 
 test('valid SVGs', t => {
 	t.true(m(fs.readFileSync('fixtures/fixture.svg')));
