@@ -25,6 +25,7 @@ test('invalid SVGs', t => {
 	t.false(m('this string contains an svg <svg></svg> in the middle'));
 	t.false(m(fs.readFileSync('readme.md')));
 	t.false(m(fs.readFileSync('index.js')));
+	t.false(m());
 });
 
 test('supports non-english characters', t => {
