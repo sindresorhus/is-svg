@@ -12,6 +12,11 @@ test('valid SVGs', t => {
 	t.true(m('    <svg></svg>'));
 	t.true(m('<svg>\n</svg>'));
 	t.true(m('<!--unicorn--><svg>\n</svg><!--cake-->'));
+	t.true(m(`
+<!-- Generator: Some Graphic Design Software  -->
+<svg version="1.1">
+</svg>
+`));
 });
 
 test('invalid SVGs', t => {
