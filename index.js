@@ -17,6 +17,6 @@ function isBinary(buf) {
 
 const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>]*>\s*)*\]?)*[^>]*>\s*)?<svg[^>]*>[^]*<\/svg>\s*$/i;
 
-module.exports = function(input) {
+module.exports = function (input) {
 	return Boolean(input) && !isBinary(input) && regex.test(input.toString().replace(htmlCommentRegex, ''));
-}
+};
