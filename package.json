@@ -10,13 +10,14 @@
 		"url": "sindresorhus.com"
 	},
 	"engines": {
-		"node": ">=4"
+		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "xo && ava && tsd-check"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"svg",
@@ -38,7 +39,9 @@
 		"html-comment-regex": "^1.1.0"
 	},
 	"devDependencies": {
-		"ava": "*",
-		"xo": "*"
+		"@types/node": "^11.10.4",
+		"ava": "^1.2.1",
+		"tsd-check": "^0.3.0",
+		"xo": "^0.24.0"
 	}
 }
