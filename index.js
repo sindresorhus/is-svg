@@ -1,19 +1,19 @@
 'use strict';
 const htmlCommentRegex = require('html-comment-regex');
 
-function isBinary(buf) {
-	const isBuf = Buffer.isBuffer(buf);
+const isBinary = buffer => {
+	const isBuffer = Buffer.isBuffer(buffer);
 
 	for (let i = 0; i < 24; i++) {
-		const charCode = isBuf ? buf[i] : buf.charCodeAt(i);
+		const characterCode = isBuffer ? buffer[i] : buffer.charCodeAt(i);
 
-		if (charCode === 65533 || charCode <= 8) {
+		if (characterCode === 65533 || characterCode <= 8) {
 			return true;
 		}
 	}
 
 	return false;
-}
+};
 
 const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>]*>\s*)*\]?)*[^>]*>\s*)?<svg[^>]*>[^]*<\/svg>\s*$/i;
 
