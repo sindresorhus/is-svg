@@ -1,5 +1,5 @@
-import {expectType} from 'tsd-check';
-import isSvg from '.';
+import {expectType} from 'tsd';
+import isSvg = require('.');
 
 const data = '<svg></svg>';
 
