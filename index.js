@@ -20,4 +20,5 @@ const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>
 const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(input.toString().replace(htmlCommentRegex, ''));
 
 module.exports = isSvg;
+// TODO: Remove this for the next major release
 module.exports.default = isSvg;
