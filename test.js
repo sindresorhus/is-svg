@@ -13,6 +13,7 @@ test('valid SVGs', t => {
 	t.true(isSvg('    <svg></svg>'));
 	t.true(isSvg('<svg>\n</svg>'));
 	t.true(isSvg('<!--unicorn--><svg>\n</svg><!--cake-->'));
+	t.true(isSvg('<svg/>'));
 	t.true(isSvg(`
 <!-- Generator: Some Graphic Design Software  -->
 <svg version="1.1">
