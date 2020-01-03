@@ -15,9 +15,33 @@ const isBinary = buffer => {
 	return false;
 };
 
+const cleanEntities = svg => {
+	const entityRegex = /\s*<!Entity\s+\S*\s*(?:"|')[^"]+(?:"|')\s*>/img;
+	const entityMarkupRegex = /(?:"|')[^"]+(?:"|')/im;
+	// Get svg entities
+	const entities = svg.match(entityRegex);
+	// Get their content
+	if (entities) {
+		const entitiesContent = [];
+		entities.forEach(entity => {
+			const aux = entity.match(entityMarkupRegex);
+			if (aux) {
+				entitiesContent.push(entity.match(entityMarkupRegex)[0]);
+			}
+		});
+
+		// Remove markup
+		entitiesContent.forEach(content => {
+			svg = svg.replace(content, '""');
+		});
+	}
+
+	return svg;
+};
+
 const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>]*>\s*)*\]?)*[^>]*>\s*)?(?:<svg[^>]*>[^]*<\/svg>|<svg[^/>]*\/\s*>)\s*$/i;
 
-const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(input.toString().replace(htmlCommentRegex, ''));
+const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(cleanEntities(input.toString()).replace(htmlCommentRegex, ''));
 
 module.exports = isSvg;
 // TODO: Remove this for the next major release

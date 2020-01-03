@@ -9,6 +9,7 @@ test('valid SVGs', t => {
 	t.true(isSvg('<?xml version="1.0" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n<svg></svg>'));
 	t.true(isSvg('<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">]><svg></svg>'));
 	t.true(isSvg('<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/"> <!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/"> ]><svg></svg>'));
+	t.true(isSvg('<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/"> <!ENTITY Smile " <rect x=\'.5\' y=\'.5\' width=\'29\' height=\'39\' fill=\'black\' stroke=\'red\'/> <g transform=\'translate(0, 5)\'> <circle cx=\'15\' cy=\'15\' r=\'10\' fill=\'yellow\'/><circle cx=\'12\' cy=\'12\' r=\'1.5\' fill=\'black\'/><circle cx=\'17\' cy=\'12\' r=\'1.5\' fill=\'black\'/><path d=\'M 10 19 L 15 23 20 19\' stroke=\'black\' stroke-width=\'2\'/></g>"> ]><svg></svg>'));
 	t.true(isSvg('<svg></svg>    '));
 	t.true(isSvg('    <svg></svg>'));
 	t.true(isSvg('<svg>\n</svg>'));
