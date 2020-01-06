@@ -17,15 +17,8 @@ const isBinary = buffer => {
 
 const cleanEntities = svg => {
 	const entityRegex = /\s*<!Entity\s+\S*\s*(?:"|')[^"]+(?:"|')\s*>/img;
-	// Get svg entities
-	const entities = svg.match(entityRegex);
-	// Remove them
-	if (entities) {
-		entities.forEach(entity => {
-			svg = svg.replace(entity, '""');
-		});
-	}
-
+	// Remove entities
+	svg = svg.replace(entityRegex, '');
 	return svg;
 };
 
