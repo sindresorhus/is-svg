@@ -50,3 +50,23 @@ test('supports non-english characters', t => {
 
 	</svg>`));
 });
+
+test('support markup inside Entity tags', t => {
+	t.true(isSvg('<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY Smile " <rect x=\'.5\' y=\'.5\' width=\'29\' height=\'39\' fill=\'black\' stroke=\'red\'/> <g transform=\'translate(0, 5)\'> <circle cx=\'15\' cy=\'15\' r=\'10\' fill=\'yellow\'/><circle cx=\'12\' cy=\'12\' r=\'1.5\' fill=\'black\'/><circle cx=\'17\' cy=\'12\' r=\'1.5\' fill=\'black\'/><path d=\'M 10 19 L 15 23 20 19\' stroke=\'black\' stroke-width=\'2\'/></g>"> ]><svg width="850px" height="700px" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(16,0,0,16,0,0)">&Smile;</g></svg>'));
+	t.true(isSvg('<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY Smile " <rect x=\'.5\' y=\'.5\' width=\'29\' height=\'39\' fill=\'black\' stroke=\'red\'/> <g transform=\'translate(0, 5)\'> <circle cx=\'15\' cy=\'15\' r=\'10\' fill=\'yellow\'/><circle cx=\'12\' cy=\'12\' r=\'1.5\' fill=\'black\'/><circle cx=\'17\' cy=\'12\' r=\'1.5\' fill=\'black\'/><path d=\'M 10 19 L 15 23 20 19\' stroke=\'black\' stroke-width=\'2\'/></g>"> <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">]><svg width="850px" height="700px" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(16,0,0,16,0,0)">&Smile;</g></svg>'));
+	t.true(isSvg(`
+	<?xml version="1.0" encoding="utf-8"?>
+		<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ 
+			<!ENTITY Orange "<g transform='translate(0, 5)'><circle cx='12' cy='12' r='1.5' fill='orange'/><path d='M 10 19 L 15 23 20 19' stroke='orange' stroke-width='2'/></g>"> 
+			<!ENTITY Melon "<g transform='translate(10, 10)'><circle cx='12' cy='12' r='1.5' fill='yellow'/><path d='M 10 19 L 15 23 20 19' stroke='yellow' stroke-width='2'/></g>"> 
+		]>
+	<svg width="850px" height="700px" version="1.1"
+		xmlns="http://www.w3.org/2000/svg">
+		<g transform="matrix(16,0,0,16,0,0)">
+ 			&Melon;
+		 </g>
+		 <g transform="matrix(32,0,0,32,0,0)">
+ 			&Orange;
+ 		</g>
+	</svg>`));
+});

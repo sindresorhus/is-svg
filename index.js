@@ -15,9 +15,15 @@ const isBinary = buffer => {
 	return false;
 };
 
+const cleanEntities = svg => {
+	const entityRegex = /\s*<!Entity\s+\S*\s*(?:"|')[^"]+(?:"|')\s*>/img;
+	// Remove entities
+	return svg.replace(entityRegex, '');
+};
+
 const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>]*>\s*)*\]?)*[^>]*>\s*)?(?:<svg[^>]*>[^]*<\/svg>|<svg[^/>]*\/\s*>)\s*$/i;
 
-const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(input.toString().replace(htmlCommentRegex, ''));
+const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(cleanEntities(input.toString()).replace(htmlCommentRegex, ''));
 
 module.exports = isSvg;
 // TODO: Remove this for the next major release
