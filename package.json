@@ -4,6 +4,7 @@
 	"description": "Check if a string or buffer is SVG",
 	"license": "MIT",
 	"repository": "sindresorhus/is-svg",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",

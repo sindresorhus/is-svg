@@ -2,13 +2,11 @@
 
 > Check if a string or buffer is [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
 
-
 ## Install
 
 ```
 $ npm install is-svg
 ```
-
 
 ## Usage
 
@@ -19,7 +17,6 @@ isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>');
 //=> true
 ```
 
-
 ## Edge cases
 
 This module performs a quick-and-dirty check. It's fast, but in certain cases it will give incorrect results.
@@ -27,7 +24,6 @@ This module performs a quick-and-dirty check. It's fast, but in certain cases it
 - Returns `true` for an SVG-like string that isn't well-formed or valid: `<svg><div></svg>`
 
 If you want to make certain that your SVG is *valid*, try parsing it with [libxmljs](https://github.com/polotek/libxmljs).
-
 
 ---
 
