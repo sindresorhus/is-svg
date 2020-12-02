@@ -1,4 +1,4 @@
-# is-svg [![Build Status](https://travis-ci.org/sindresorhus/is-svg.svg?branch=master)](https://travis-ci.org/sindresorhus/is-svg)
+# is-svg
 
 > Check if a string or buffer is [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
 
