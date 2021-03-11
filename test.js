@@ -1,5 +1,6 @@
 import fs from 'fs';
 import test from 'ava';
+import timeSpan from 'time-span';
 import isSvg from '.';
 
 test('valid SVGs', t => {
@@ -69,4 +70,16 @@ test('support markup inside Entity tags', t => {
  			&Orange;
  		</g>
 	</svg>`));
+});
+
+test('regex should not be quadratic', t => {
+	const end = timeSpan();
+
+	isSvg(`<!doctype svg ${' '.repeat(34560)}`);
+
+	if (end.seconds() < 10) {
+		t.pass();
+	} else {
+		t.fail();
+	}
 });

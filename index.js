@@ -21,9 +21,17 @@ const cleanEntities = svg => {
 	return svg.replace(entityRegex, '');
 };
 
-const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*\s*(?:\[?(?:\s*<![^>]*>\s*)*\]?)*[^>]*>\s*)?(?:<svg[^>]*>[^]*<\/svg>|<svg[^/>]*\/\s*>)\s*$/i;
+const removeDtdMarkupDeclarations = svg => svg.replace(/\[?(?:\s*<![A-Z]+[^>]*>\s*)*\]?/g, '');
 
-const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(cleanEntities(input.toString()).replace(htmlCommentRegex, ''));
+const clean = svg => {
+	svg = cleanEntities(svg);
+	svg = removeDtdMarkupDeclarations(svg);
+	return svg;
+};
+
+const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*>\s*)?(?:<svg[^>]*>[^]*<\/svg>|<svg[^/>]*\/\s*>)\s*$/i;
+
+const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(clean(input.toString()).replace(htmlCommentRegex, ''));
 
 module.exports = isSvg;
 // TODO: Remove this for the next major release
