@@ -13,7 +13,6 @@ const isSvg = input => {
 	}
 
 	// Has to be `!==` as it can also return an object with error info.
-	console.log('a', parser.validate(input));
 	if (parser.validate(input) !== true) {
 		return false;
 	}
