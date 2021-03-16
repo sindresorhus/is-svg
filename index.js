@@ -1,37 +1,40 @@
 'use strict';
-const htmlCommentRegex = require('html-comment-regex');
+const parser = require('fast-xml-parser');
 
-const isBinary = buffer => {
-	const isBuffer = Buffer.isBuffer(buffer);
-
-	for (let i = 0; i < 24; i++) {
-		const characterCode = isBuffer ? buffer[i] : buffer.charCodeAt(i);
-
-		if (characterCode === 65533 || characterCode <= 8) {
-			return true;
-		}
+const isSvg = input => {
+	if (input === undefined || input === null) {
+		return false;
 	}
 
-	return false;
+	input = input.toString().trim();
+
+	if (input.length === 0) {
+		return false;
+	}
+
+	// Has to be `!==` as it can also return an object with error info.
+	console.log('a', parser.validate(input));
+	if (parser.validate(input) !== true) {
+		return false;
+	}
+
+	let jsonObject;
+	try {
+		jsonObject = parser.parse(input);
+	} catch (_) {
+		return false;
+	}
+
+	if (!jsonObject) {
+		return false;
+	}
+
+	if (!('svg' in jsonObject)) {
+		return false;
+	}
+
+	return true;
 };
-
-const cleanEntities = svg => {
-	const entityRegex = /\s*<!Entity\s+\S*\s*(?:"|')[^"]+(?:"|')\s*>/img;
-	// Remove entities
-	return svg.replace(entityRegex, '');
-};
-
-const removeDtdMarkupDeclarations = svg => svg.replace(/\[?(?:\s*<![A-Z]+[^>]*>\s*)*\]?/g, '');
-
-const clean = svg => {
-	svg = cleanEntities(svg);
-	svg = removeDtdMarkupDeclarations(svg);
-	return svg;
-};
-
-const regex = /^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*>\s*)?(?:<svg[^>]*>[^]*<\/svg>|<svg[^/>]*\/\s*>)\s*$/i;
-
-const isSvg = input => Boolean(input) && !isBinary(input) && regex.test(clean(input.toString()).replace(htmlCommentRegex, ''));
 
 module.exports = isSvg;
 // TODO: Remove this for the next major release

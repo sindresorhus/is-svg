@@ -37,7 +37,7 @@
 		"buffer"
 	],
 	"dependencies": {
-		"html-comment-regex": "^1.1.2"
+		"fast-xml-parser": "^3.19.0"
 	},
 	"devDependencies": {
 		"@types/node": "^11.13.0",
