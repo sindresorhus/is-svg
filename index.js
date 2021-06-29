@@ -6,6 +6,7 @@ const isSvg = input => {
 		return false;
 	}
 
+	// TODO: Remove the `.replace` call when using `fast-xml-parser@4` which has fixed the bug.
 	input = input.toString().trim().replace(/\n/g, ' ');
 
 	if (input.length === 0) {

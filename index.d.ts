@@ -1,5 +1,3 @@
-/// <reference types="node"/>
-
 declare const isSvg: {
 	/**
 	Check if a string or buffer is [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics).
