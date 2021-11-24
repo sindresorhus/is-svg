@@ -6,7 +6,7 @@ const isSvg = input => {
 		return false;
 	}
 
-	input = input.toString().trim();
+	input = input.toString().trim().replace(/\n/g, ' ');
 
 	if (input.length === 0) {
 		return false;

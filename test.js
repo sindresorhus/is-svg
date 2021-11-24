@@ -20,6 +20,13 @@ test('valid SVGs', t => {
 <svg version="1.1">
 </svg>
 `));
+	t.true(isSvg(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="75"
+height="75"
+version="1.1"
+></svg>`));
 });
 
 test('invalid SVGs', t => {
