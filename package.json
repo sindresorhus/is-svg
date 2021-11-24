@@ -1,6 +1,6 @@
 {
 	"name": "is-svg",
-	"version": "4.3.1",
+	"version": "4.3.2",
 	"description": "Check if a string or buffer is SVG",
 	"license": "MIT",
 	"repository": "sindresorhus/is-svg",
