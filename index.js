@@ -1,19 +1,18 @@
-'use strict';
-const {XMLParser, XMLValidator} = require('fast-xml-parser');
+import {XMLParser, XMLValidator} from 'fast-xml-parser';
 
-const isSvg = input => {
-	if (input === undefined || input === null) {
-		return false;
+export default function isSvg(string) {
+	if (typeof string !== 'string') {
+		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
 	}
 
-	input = input.toString().trim();
+	string = string.trim();
 
-	if (input.length === 0) {
+	if (string.length === 0) {
 		return false;
 	}
 
 	// Has to be `!==` as it can also return an object with error info.
-	if (XMLValidator.validate(input) !== true) {
+	if (XMLValidator.validate(string) !== true) {
 		return false;
 	}
 
@@ -21,8 +20,8 @@ const isSvg = input => {
 	const parser = new XMLParser();
 
 	try {
-		jsonObject = parser.parse(input);
-	} catch (_) {
+		jsonObject = parser.parse(string);
+	} catch {
 		return false;
 	}
 
@@ -35,8 +34,4 @@ const isSvg = input => {
 	}
 
 	return true;
-};
-
-module.exports = isSvg;
-// TODO: Remove this for the next major release
-module.exports.default = isSvg;
+}

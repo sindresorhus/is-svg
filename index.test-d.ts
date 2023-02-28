@@ -1,7 +1,4 @@
 import {expectType} from 'tsd';
-import isSvg = require('.');
+import isSvg from './index.js';
 
-const data = '<svg></svg>';
-
-expectType<boolean>(isSvg(data));
-expectType<boolean>(isSvg(Buffer.from(data)));
+expectType<boolean>(isSvg('<svg></svg>'));

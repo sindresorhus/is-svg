@@ -1,10 +1,10 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import test from 'ava';
 import timeSpan from 'time-span';
-import isSvg from '.';
+import isSvg from './index.js';
 
 test('valid SVGs', t => {
-	t.true(isSvg(fs.readFileSync('fixtures/fixture.svg')));
+	t.true(isSvg(fs.readFileSync('fixtures/fixture.svg', 'utf8')));
 	t.true(isSvg('<svg width="100" height="100" viewBox="0 0 30 30" version="1.1"></svg>'));
 	t.true(isSvg('<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>'));
 	t.true(isSvg('<?xml version="1.0" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n<svg></svg>'));
@@ -30,17 +30,16 @@ version="1.1"
 });
 
 test('invalid SVGs', t => {
-	t.false(isSvg(fs.readFileSync('fixtures/fixture.jpg')));
+	t.false(isSvg(fs.readFileSync('fixtures/fixture.jpg', 'utf8')));
 	t.false(isSvg('<div><svg></svg>'));
 	t.false(isSvg('<div><svg></svg></div>'));
-	t.false(isSvg(fs.readFileSync('index.js')));
-	t.false(isSvg());
+	t.false(isSvg(fs.readFileSync('index.js', 'utf8')));
 	t.false(isSvg('this string contains an svg <svg></svg> in the middle'));
 	t.false(isSvg('<svg><div></svg>'));
 	t.false(isSvg('this string ends with an svg <svg></svg>'));
 	t.false(isSvg('<svg> hello I am an svg oops maybe not'));
 	t.false(isSvg('this is not svg, but it mentions <svg> tags'));
-	t.false(isSvg(fs.readFileSync('readme.md')));
+	t.false(isSvg(fs.readFileSync('readme.md', 'utf8')));
 
 	// https://github.com/NaturalIntelligence/fast-xml-parser/issues/327
 	// t.false(isSvg('<svg></svg> this string starts with an svg'));
@@ -85,7 +84,7 @@ test('support markup inside Entity tags', t => {
 test('regex should not be quadratic', t => {
 	const end = timeSpan();
 
-	isSvg(`<!doctype svg ${' '.repeat(34560)}`);
+	isSvg(`<!doctype svg ${' '.repeat(34_560)}`);
 
 	if (end.seconds() < 10) {
 		t.pass();
