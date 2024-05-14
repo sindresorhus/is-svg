@@ -5,7 +5,7 @@ export default function isSvg(string) {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
 	}
 
-	string = string.trim();
+	string = string.toLowerCase().trim();
 
 	if (string.length === 0) {
 		return false;
