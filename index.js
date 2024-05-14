@@ -29,7 +29,7 @@ export default function isSvg(string) {
 		return false;
 	}
 
-	if (!('svg' in jsonObject)) {
+	if (!Object.keys(jsonObject).some(x => x.toLowerCase() === 'svg')) {
 		return false;
 	}
 

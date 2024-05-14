@@ -27,6 +27,7 @@ width="75"
 height="75"
 version="1.1"
 ></svg>`));
+	t.true(isSvg('<SvG version="1.1"></SvG>'));
 });
 
 test('invalid SVGs', t => {
