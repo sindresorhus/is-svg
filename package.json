@@ -1,6 +1,6 @@
 {
 	"name": "is-svg",
-	"version": "5.0.1",
+	"version": "5.1.0",
 	"description": "Check if a string is SVG",
 	"license": "MIT",
 	"repository": "sindresorhus/is-svg",
