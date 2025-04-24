@@ -93,3 +93,27 @@ test('regex should not be quadratic', t => {
 		t.fail();
 	}
 });
+
+test('SVG provided as binary', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture.svg')));
+});
+
+test('UTF-8 BOM encoded SVG', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture-utf8-bom.svg')));
+});
+
+test('UTF-16-BE encoded SVG', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture-utf16-be-bom.svg').subarray(2)));
+});
+
+test('UTF-16-BE-BOM encoded SVG', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture-utf16-be-bom.svg')));
+});
+
+test('UTF-16-LE encoded SVG', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture-utf16-le-bom.svg').subarray(2)));
+});
+
+test('UTF-16-LE-BOM encoded SVG', t => {
+	t.true(isSvg(fs.readFileSync('fixtures/fixture-utf16-le-bom.svg')));
+});
