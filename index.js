@@ -1,37 +1,25 @@
-import {XMLParser, XMLValidator} from 'fast-xml-parser';
+import {XmlTextDetector, isXml} from '@file-type/xml';
 
 export default function isSvg(string) {
-	if (typeof string !== 'string') {
-		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
-	}
+	if (typeof string === 'string') {
+		string = string.trim();
 
-	string = string.trim();
+		if (string.length === 0) {
+			return false;
+		}
 
-	if (string.length === 0) {
+		const xmlTextDetector = new XmlTextDetector();
+		xmlTextDetector.write(string);
+		return xmlTextDetector.isValid() && xmlTextDetector.fileType?.ext === 'svg';	}
+
+	if (string instanceof Uint8Array) {
+		const xmlDetection = isXml(string);
+		if (xmlDetection) {
+			const textDecoder = new TextDecoder(xmlDetection.encoding);
+			return isSvg(textDecoder.decode(string));
+		}
 		return false;
 	}
 
-	// Has to be `!==` as it can also return an object with error info.
-	if (XMLValidator.validate(string) !== true) {
-		return false;
-	}
-
-	let jsonObject;
-	const parser = new XMLParser();
-
-	try {
-		jsonObject = parser.parse(string);
-	} catch {
-		return false;
-	}
-
-	if (!jsonObject) {
-		return false;
-	}
-
-	if (!Object.keys(jsonObject).some(x => x.toLowerCase() === 'svg')) {
-		return false;
-	}
-
-	return true;
+	throw new TypeError(`Expected a \`string\` or \`Uint8Array\`, got \`${typeof string}\``);
 }
