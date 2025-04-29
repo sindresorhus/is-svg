@@ -1,4 +1,4 @@
-import {XMLParser, XMLValidator} from 'fast-xml-parser';
+import {XmlTextDetector} from '@file-type/xml';
 
 export default function isSvg(string) {
 	if (typeof string !== 'string') {
@@ -11,27 +11,7 @@ export default function isSvg(string) {
 		return false;
 	}
 
-	// Has to be `!==` as it can also return an object with error info.
-	if (XMLValidator.validate(string) !== true) {
-		return false;
-	}
-
-	let jsonObject;
-	const parser = new XMLParser();
-
-	try {
-		jsonObject = parser.parse(string);
-	} catch {
-		return false;
-	}
-
-	if (!jsonObject) {
-		return false;
-	}
-
-	if (!Object.keys(jsonObject).some(x => x.toLowerCase() === 'svg')) {
-		return false;
-	}
-
-	return true;
+	const xmlTextDetector = new XmlTextDetector();
+	xmlTextDetector.write(string);
+	return xmlTextDetector.isValid() && xmlTextDetector.fileType?.ext === 'svg';
 }
