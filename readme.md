@@ -16,3 +16,14 @@ import isSvg from 'is-svg';
 isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>');
 //=> true
 ```
+
+When XML correctness is not critical for your application,
+consider disabling `xmlValidation` to significantly improve performance,
+with speed gains ranging from 12× to 60×.
+
+```js
+import isSvg from 'is-svg';
+
+isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>', {xmlValidation: false});
+//=> true
+```
