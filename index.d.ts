@@ -1,11 +1,14 @@
 /**
 `isSvg` options
  */
-export type IsSvgOptions = {
+export type Options = {
 	/**
-	Enable or disable XML validation, enabled by default
+	Whether to validate the SVG as proper XML.
+	Turning this off can improve performance.
+
+	@default true
 	*/
-	xmlValidation?: boolean;
+	validate?: boolean;
 };
 
 /**
@@ -19,4 +22,4 @@ isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>');
 //=> true
 ```
 */
-export default function isSvg(string: string, options?: IsSvgOptions): boolean;
+export default function isSvg(string: string, options?: Options): boolean;

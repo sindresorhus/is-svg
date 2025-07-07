@@ -1,6 +1,6 @@
 import {XmlTextDetector} from '@file-type/xml';
 
-export default function isSvg(string, options) {
+export default function isSvg(string, {validate} = {}) {
 	if (typeof string !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
 	}
@@ -11,7 +11,7 @@ export default function isSvg(string, options) {
 		return false;
 	}
 
-	const fullScan = !options || options.xmlValidation !== false;
+	const fullScan = validate !== false;
 
 	const xmlTextDetector = new XmlTextDetector({fullScan});
 
