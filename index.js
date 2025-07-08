@@ -11,14 +11,13 @@ export default function isSvg(string, {validate} = {}) {
 		return false;
 	}
 
-	const fullScan = validate !== false;
-
-	const xmlTextDetector = new XmlTextDetector({fullScan});
+	const xmlTextDetector = new XmlTextDetector({fullScan: validate});
 
 	let offset = 0;
 
-	if (fullScan) {
+	if (validate) {
 		xmlTextDetector.write(string);
+
 		if (!xmlTextDetector.isValid()) {
 			return false;
 		}
