@@ -13,8 +13,6 @@ export default function isSvg(string, {validate} = {}) {
 
 	const xmlTextDetector = new XmlTextDetector({fullScan: validate});
 
-	let offset = 0;
-
 	if (validate) {
 		xmlTextDetector.write(string);
 
@@ -23,6 +21,8 @@ export default function isSvg(string, {validate} = {}) {
 		}
 	} else {
 		const chunkSize = 128;
+
+		let offset = 0;
 		while (string.length > offset && !xmlTextDetector.onEnd) {
 			xmlTextDetector.write(string.slice(offset, Math.min(offset + chunkSize, string.length)));
 			offset += chunkSize;
