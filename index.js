@@ -1,6 +1,6 @@
 import {XmlTextDetector} from '@file-type/xml';
 
-export default function isSvg(string, {validate} = {}) {
+export default function isSvg(string, {validate = true} = {}) {
 	if (typeof string !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
 	}
