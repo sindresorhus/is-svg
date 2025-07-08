@@ -17,13 +17,19 @@ isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>');
 //=> true
 ```
 
-When XML correctness is not critical for your application,
-consider disabling XML validation to significantly improve performance,
-with speed gains ranging from 12× to 60×, using the `validate` option:
+## API
 
-```js
-import isSvg from 'is-svg';
+### isSvg(string, options?)
 
-isSvg('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#00CD9F"/></svg>', {validate: false});
-//=> true
-```
+#### options
+
+Type: `object`
+
+##### validate
+
+Type: `boolean`\
+Default: `true`
+
+Whether to validate the SVG as proper XML.
+
+Turning this off can improve performance significantly.
