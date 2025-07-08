@@ -1,10 +1,8 @@
-/**
-`isSvg` options
- */
 export type Options = {
 	/**
 	Whether to validate the SVG as proper XML.
-	Turning this off can improve performance.
+
+	Turning this off can improve performance significantly.
 
 	@default true
 	*/
