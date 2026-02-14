@@ -39,7 +39,7 @@
 		"string"
 	],
 	"dependencies": {
-		"@file-type/xml": "^0.4.3"
+		"@file-type/xml": "^1.1.0"
 	},
 	"devDependencies": {
 		"@types/node": "^22.15.3",
