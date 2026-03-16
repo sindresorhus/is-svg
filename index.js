@@ -11,6 +11,17 @@ export default function isSvg(string, {validate = true} = {}) {
 		return false;
 	}
 
+	// Fast pre-check: SVG must start with `<` and contain `<svg` or `<?xml`
+	// This avoids expensive XmlTextDetector full-scan on large non-XML buffers (e.g., PNG/JPG)
+	if (!string.startsWith('<')) {
+		return false;
+	}
+
+	const head = string.slice(0, 512).toLowerCase();
+	if (!head.includes('<svg') && !head.includes('<?xml') && !head.includes('<!doctype svg')) {
+		return false;
+	}
+
 	const xmlTextDetector = new XmlTextDetector({fullScan: validate});
 
 	if (validate) {
